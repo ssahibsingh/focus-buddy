@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const {isEmail} = require ('validator');
+const quizSchema = require('./quiz');
+
+
+var Quiz = mongoose.model('Quiz', quizSchema);
 
 const userSchema = new mongoose.Schema({
     name:{
@@ -15,18 +19,17 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     dob:{
-        type: String,
+        type: Date,
         required: true,
     },
     phoneNumber:{
         type: Number,
-        min: 1000000000,
+        min: 4000000000,
         max: 9999999999
     },
     email:{
         type: String,
-        unique: true,
-        validate: [isEmail, 'invalid email']
+        unique: true
     },
     fatherEmail:{
         type: String,
@@ -38,6 +41,7 @@ const userSchema = new mongoose.Schema({
     },
     schoolName: String,
     studiesIn: Number,
+    quizDetails:[quizSchema]
 })
 
 

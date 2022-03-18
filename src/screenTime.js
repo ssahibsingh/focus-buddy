@@ -1,4 +1,18 @@
-var start = new Date().getTime();
+function gettime(){
+    return new Date().getTime();
+}
+
+var start =  gettime();
+
+var end = gettime();
+
+function screentime(videoLength){
+    var duration = (end - start);
+    
+    if(duration < videoLength){
+        console.log("")
+    }
+}
 
 
-var end = new Date().getTime();
+// agr user

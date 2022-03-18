@@ -1,19 +1,18 @@
 const mongoose = require('mongoose');
 const {dbconnect} = require('../db/dbconnect');
-const userSchema = require('../schemas/user');
+const quizSchema = require('../schemas/quiz');
 
-
-function register(data) {
+function setQuiz(quiz){
     dbconnect();
-    const User = mongoose.model('User', userSchema);
+    const Quiz = mongoose.model('Quiz', quizSchema);
 
-    User.find({ email: data.email }, (err, res) => {
+    Quiz.find({ link: quiz.link }, (err, res) => {
         if (!err) {
             if (res.length > 0) {
-                console.log("User Already Exists!!!");
+                console.log("Quiz Already Exists!!!");
             }
             else {
-                User.insertMany([data], (error, result) => {
+                Quiz.insertMany([quiz], (error, result) => {
                     if (!error) {
                         console.log(result);
                         return result;
@@ -31,4 +30,5 @@ function register(data) {
     })
 }
 
-module.exports = { register };
+
+module.exports = { setQuiz };
